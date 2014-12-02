@@ -356,7 +356,7 @@ namespace UnitTestProject1
         * Actual outcome:
        */
         [TestMethod]
-        public void Normal_Valid_displayItem()
+        public void Exception_Valid_displayItem()
         {
         }
 
@@ -499,7 +499,7 @@ namespace UnitTestProject1
          * Actual outcome:
         */
         [TestMethod]
-        public void Normal_Valid_detailsMenu()
+        public void Boundary_Valid_detailsMenu()
         {
         }
 
@@ -514,8 +514,172 @@ namespace UnitTestProject1
          * Actual outcome:
         */
         [TestMethod]
-        public void Normal_Valid_detailsMenu()
+        public void Exception_Valid_detailsMenu()
         {
+        }
+
+    //--------------------------------------------------
+
+        /** 
+         * Name: Normal_Valid_setSIN()
+         * Purpose: Test the setSin function's ability to validate a valid SIN.
+         * It will be conducted manually. Invalid menu options will be input.
+         * Type: Normal.
+         * Expected Results: 
+         *      true.
+         * Expected outcome: success
+         * Actual outcome:
+        */
+        [TestMethod]
+        public void Normal_Valid_setSIN()
+        {
+            Employee emp = new Employee();
+            string sin = "046454286";
+            bool expected = true;
+            bool actual = emp.setSIN(sin);
+            Assert.AreEqual(expected, actual, "Test Failed. Result:" + actual);
+        }
+
+        /** 
+         * Name: Normal_Invalid1_setSIN()
+         * Purpose: Test the setSin function's ability to invalidate an invalid SIN.
+         * It will be conducted manually. Invalid menu options will be input.
+         * Type: Normal.
+         * Expected Results: 
+         *      false.
+         * Expected outcome: success
+         * Actual outcome:
+        */
+        [TestMethod]
+        public void Normal_Invalid1_setSIN()
+        {
+            Employee emp = new Employee();
+            string sin = "123456789";
+            bool expected = false;
+            bool actual = emp.setSIN(sin);
+            Assert.AreEqual(expected, actual, "Test Failed. Result:" + actual);
+        }
+
+        /** 
+         * Name: Normal_Invalid2_setSIN()
+         * Purpose: Test the setSin function's ability to invalidate an invalid SIN.
+         * It will be conducted manually. Invalid menu options will be input.
+         * Type: Normal.
+         * Expected Results: 
+         *      false.
+         * Expected outcome: success
+         * Actual outcome:
+        */
+        [TestMethod]
+        public void Normal_Invalid2_setSIN()
+        {
+            Employee emp = new Employee();
+            string sin = "0";
+            bool expected = false;
+            bool actual = emp.setSIN(sin);
+            Assert.AreEqual(expected, actual, "Test Failed. Result:" + actual);
+        }
+
+        /** 
+         * Name: Exception_Invalid1_setSIN()
+         * Purpose: Test the setSin function's ability to handle an empty string.
+         * It will be conducted manually. Invalid menu options will be input.
+         * Type: Exception.
+         * Expected Results: 
+         *      false.
+         * Expected outcome: success
+         * Actual outcome:
+        */
+        [TestMethod]
+        public void Exception_Invalid1_setSIN()
+        {
+            Employee emp = new Employee();
+            string sin = "";
+            bool expected = false;
+            bool actual = emp.setSIN(sin);
+            Assert.AreEqual(expected, actual, "Test Failed. Result:" + actual);
+        }
+
+        /** 
+         * Name: Exception_Invalid2_setSIN()
+         * Purpose: Test the setSin function's ability to handle alpha characters.
+         * It will be conducted manually. Invalid menu options will be input.
+         * Type: Exception.
+         * Expected Results: 
+         *      false.
+         * Expected outcome: success
+         * Actual outcome:
+        */
+        [TestMethod]
+        public void Exception_Invalid2_setSIN()
+        {
+            Employee emp = new Employee();
+            string sin = "test";
+            bool expected = false;
+            bool actual = emp.setSIN(sin);
+            Assert.AreEqual(expected, actual, "Test Failed. Result:" + actual);
+        }
+
+    //--------------------------------------------------
+
+        /** 
+         * Name: Normal_Valid_setDOB()
+         * Purpose: Test the setDOB function's ability to insert a valid date.
+         * It will be conducted manually. Invalid menu options will be input.
+         * Type: Normal.
+         * Expected Results: 
+         *      true.
+         * Expected outcome: success
+         * Actual outcome:
+        */
+        [TestMethod]
+        public void Normal_Valid_setDOB()
+        {
+            Employee emp = new Employee();
+            string temp = "01/08/2008";
+            bool expected = true;
+            bool actual = emp.setDOB(temp);
+            Assert.AreEqual(expected, actual, "Test Failed. Result:" + actual);
+        }
+
+        /** 
+         * Name: Normal_Valid_setDOB()
+         * Purpose: Test the setDOB function's ability to handle an invalid string.
+         * It will be conducted manually. Invalid menu options will be input.
+         * Type: Exception.
+         * Expected Results: 
+         *      false.
+         * Expected outcome: success
+         * Actual outcome:
+        */
+        [TestMethod]
+        public void Normal_Invalid_setDOB()
+        {
+            Employee emp = new Employee();
+            string temp = "test";
+            bool expected = false;
+            bool actual = emp.setDOB(temp);
+            Assert.AreEqual(expected, actual, "Test Failed. Result:" + actual);
+        }
+
+        /** 
+         * Name: Exception_Invalid_setDOB()
+         * Purpose: Test the setDOB function's ability to handle an empty string.
+         * It will be conducted manually. Invalid menu options will be input.
+         * Type: Exception.
+         * Expected Results: 
+         *      false.
+         * Expected outcome: success
+         * Actual outcome:
+        */
+        [TestMethod]
+        public void Exception_Invalid_setDOB()
+        {
+            Employee emp = new Employee();
+            string temp = "";
+            bool expected = false;
+            bool actual = emp.setDOB(temp);
+            Assert.AreEqual(expected, actual, "Test Failed. Result:" + actual);
         }
     }
 }

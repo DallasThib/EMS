@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Supporting;
+using System.Text.RegularExpressions;
 
 namespace AllEmployees
 {
@@ -34,6 +35,81 @@ namespace AllEmployees
 */
     public class Employee
     {
+        protected string firstName { get; set; }
+        protected string lastName { get; set; }
+        protected int SIN { get; set; }
+        protected DateTime DOB { get; set; }
+
+
+        public bool setFirstName(string str)
+        {
+            bool success = false;
+            Regex r = new Regex("^[a-zA-Z]*$");
+            if (r.IsMatch(str))
+            {
+                firstName = str;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setLastName(string str)
+        {
+            bool success = false;
+            Regex r = new Regex("^[a-zA-Z]*$");
+            if (r.IsMatch(str))
+            {
+                lastName = str;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setDOB(string str)
+        {
+            bool success = false;
+            DateTime date;
+            if (DateTime.TryParse(str, out date))
+            {
+                DOB = date.Date;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setSIN(string num)
+        {
+            bool success = false;
+            int temp;
+            string str = num;
+            int[] toMult = new int[9];
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                toMult[i] = (int)Char.GetNumericValue(str[i]);
+                if (i % 2 == 1)
+                {
+                    toMult[i] = toMult[i] * 2;
+                    if (toMult[i] > 9)
+                    {
+                        temp = toMult[i] % 10 + toMult[i] / 10;
+                        toMult[i] = temp;
+                    }
+                }
+            }
+            temp = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                temp += toMult[i];
+            }
+
+            if (temp % 10 == 0 && str.Length == 9)
+            {
+                SIN = int.Parse(num);
+                success = true;
+            }
+            return success;
+        }
     }
 
     /**
@@ -65,6 +141,45 @@ namespace AllEmployees
 */
     public class FullTimeEmployee : Employee
     {
+        DateTime dateOfHire { get; set; }
+        DateTime dateOfTermination { get; set; }
+        double salary { get; set; }
+
+        public bool setDOH(string str)
+        {
+            bool success = false;
+            DateTime date;
+            if (DateTime.TryParse(str, out date))
+            {
+                dateOfHire = date.Date;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setDOT(string str)
+        {
+            bool success = false;
+            DateTime date;
+            if (DateTime.TryParse(str, out date))
+            {
+                dateOfTermination = date.Date;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setSalary(string str)
+        {
+            bool success = false;
+            double temp;
+            if ((temp = Convert.ToDouble(str)) != 0)
+            {
+                salary = temp;
+                success = true;
+            }
+            return success;
+        }
     }
 
     /**
@@ -96,6 +211,35 @@ namespace AllEmployees
 */
     public class PartTimeEmployee : Employee
     {
+        DateTime dateOfHire { get; set; }
+        DateTime dateOfTermination { get; set; }
+        double hourlyWage { get; set; }
+
+        
+
+        public bool setDOT(string str)
+        {
+            bool success = false;
+            DateTime date;
+            if (DateTime.TryParse(str, out date))
+            {
+                dateOfTermination = date.Date;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setSalary(string str)
+        {
+            bool success = false;
+            double temp;
+            if ((temp = Convert.ToDouble(str)) != 0)
+            {
+                hourlyWage = temp;
+                success = true;
+            }
+            return success;
+        }
     }
 
     /**
@@ -128,6 +272,45 @@ namespace AllEmployees
 */
     public class ContractEmployee : Employee
     {
+        DateTime contractStart { get; set; }
+        DateTime contractEnd { get; set; }
+        double fixedContractAmmount { get; set; }
+
+        public bool setDOH(string str)
+        {
+            bool success = false;
+            DateTime date;
+            if (DateTime.TryParse(str, out date))
+            {
+                contractStart = date.Date;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setDOT(string str)
+        {
+            bool success = false;
+            DateTime date;
+            if (DateTime.TryParse(str, out date))
+            {
+                contractEnd= date.Date;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setSalary(string str)
+        {
+            bool success = false;
+            double temp;
+            if ((temp = Convert.ToDouble(str)) != 0)
+            {
+                fixedContractAmmount = temp;
+                success = true;
+            }
+            return success;
+        }
     }
 
     /**
@@ -159,5 +342,30 @@ namespace AllEmployees
 */
     public class SeasonalEmployee : Employee
     {
+        string season { get; set; }
+        double piecePay { get; set; }
+
+        public bool setSeason(string str)
+        {
+            bool success = false;
+            if (str == "Summer" || str == "Fall" || str == "Winter" || str == "Spring")
+            {
+                season = str;
+                success = true;
+            }
+            return success;
+        }
+
+        public bool setSalary(string str)
+        {
+            bool success = false;
+            double temp;
+            if ((temp = Convert.ToDouble(str)) != 0)
+            {
+                piecePay = temp;
+                success = true;
+            }
+            return success;
+        }
     }
 }
