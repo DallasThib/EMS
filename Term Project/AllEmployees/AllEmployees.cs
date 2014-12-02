@@ -35,10 +35,10 @@ namespace AllEmployees
 */
     public class Employee
     {
-        protected string firstName { get; set; }
-        protected string lastName { get; set; }
-        protected int SIN { get; set; }
-        protected DateTime DOB { get; set; }
+        public int SIN { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public DateTime DOB { get; set; }
 
 
         public bool setFirstName(string str)
@@ -141,9 +141,9 @@ namespace AllEmployees
 */
     public class FullTimeEmployee : Employee
     {
-        DateTime dateOfHire { get; set; }
-        DateTime dateOfTermination { get; set; }
-        double salary { get; set; }
+        public DateTime dateOfHire { get; set; }
+        public DateTime dateOfTermination { get; set; }
+        public double salary { get; set; }
 
         public bool setDOH(string str)
         {
@@ -211,9 +211,9 @@ namespace AllEmployees
 */
     public class PartTimeEmployee : Employee
     {
-        DateTime dateOfHire { get; set; }
-        DateTime dateOfTermination { get; set; }
-        double hourlyWage { get; set; }
+        public DateTime dateOfHire { get; set; }
+        public DateTime dateOfTermination { get; set; }
+        public double hourlyWage { get; set; }
 
         
 
@@ -272,9 +272,9 @@ namespace AllEmployees
 */
     public class ContractEmployee : Employee
     {
-        DateTime contractStart { get; set; }
-        DateTime contractEnd { get; set; }
-        double fixedContractAmmount { get; set; }
+        public DateTime contractStart { get; set; }
+        public DateTime contractEnd { get; set; }
+        public double fixedContractAmmount { get; set; }
 
         public bool setDOH(string str)
         {
@@ -342,8 +342,8 @@ namespace AllEmployees
 */
     public class SeasonalEmployee : Employee
     {
-        string season { get; set; }
-        double piecePay { get; set; }
+        public string season { get; set; }
+        public double piecePay { get; set; }
 
         public bool setSeason(string str)
         {

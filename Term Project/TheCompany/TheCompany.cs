@@ -39,21 +39,7 @@ namespace TheCompany
     {
         Logging logger = new Logging();
         static List<Employee> container = new List<Employee>();
-
-        /** \brief verifyItem()
-        *   \param string - record - an employee to be verified
-        *   \return bool - success - represents the success condition upon exiting 
-        *  /the method.
-        * 
-        *   This methods purpose is to take in an employee to be verified and validate its
-        *   its contents to determine its validity as an employee.
-        * 
-        */
-        public bool verifyItem(string record)
-        {
-            return true;
-        }
-
+        
         /** \brief loadDatabase()
         *   \param string - file - a file to pull from. If null, a default value is used.
         *   \return bool - success - represents the success condition upon exiting 
@@ -75,6 +61,66 @@ namespace TheCompany
         */
         public bool saveContainer(string file)
         {
+            FileIO writer = new FileIO();
+            FullTimeEmployee fullTime = new FullTimeEmployee();
+            PartTimeEmployee partTime = new PartTimeEmployee();
+            SeasonalEmployee seasonal = new SeasonalEmployee();
+            ContractEmployee contract = new ContractEmployee();
+            string record = "";
+            List<string> records = new List<string>();
+            foreach(Employee i in container)
+            {
+                record = "";
+                if (i.GetType().IsAssignableFrom(fullTime.GetType()))
+                {
+                    fullTime = (FullTimeEmployee)i;
+                    record = "FT,";
+                    record += fullTime.SIN + ",";
+                    record += fullTime.firstName + ",";
+                    record += fullTime.lastName + ",";
+                    record += fullTime.DOB + ",";
+                    record += fullTime.dateOfHire + ",";
+                    record += fullTime.dateOfTermination + ",";
+                    record += fullTime.salary;
+                }
+                else if (i.GetType().IsAssignableFrom(partTime.GetType()))
+                {
+                    partTime = (PartTimeEmployee)i;
+                    record = "PT,";
+                    record += partTime.SIN + ",";
+                    record += partTime.firstName + ",";
+                    record += partTime.lastName + ",";
+                    record += partTime.DOB + ",";
+                    record += partTime.dateOfHire + ",";
+                    record += partTime.dateOfTermination + ",";
+                    record += partTime.hourlyWage;
+                }
+                else if (i.GetType().IsAssignableFrom(seasonal.GetType()))
+                {
+                    seasonal = (SeasonalEmployee)i;
+                    record = "S,";
+                    record += seasonal.SIN + ",";
+                    record += seasonal.firstName + ",";
+                    record += seasonal.lastName + ",";
+                    record += seasonal.DOB + ",";
+                    record += seasonal.season + ",";
+                    record += seasonal.piecePay;
+                }
+                else if (i.GetType().IsAssignableFrom(seasonal.GetType()))
+                {
+                    contract = (ContractEmployee)i;
+                    record = "C,";
+                    record += contract.SIN + ",";
+                    record += contract.firstName + ",";
+                    record += contract.lastName + ",";
+                    record += contract.DOB + ",";
+                    record += contract.contractStart + ",";
+                    record += contract.contractEnd+ ",";
+                    record += contract.fixedContractAmmount;
+                }
+                records.Add(record);
+            }
+            writer.WriteFile(records, file);
             return true;
         }
 

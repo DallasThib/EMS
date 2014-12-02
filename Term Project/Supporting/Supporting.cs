@@ -82,13 +82,16 @@ namespace Supporting
   *   the record string to the database file using a StreamWriter.
   * 
   */
-        public static bool WriteFile(string record, string file)
+        public bool WriteFile(List<string> records, string file)
         {
             bool success = true;
             StreamWriter writer = new StreamWriter(winDir + file);
             try
             {
-                writer.WriteLine(record);
+                foreach (string record in records)
+                {
+                    writer.WriteLine(record);
+                }
             }
             catch(IOException)
             {

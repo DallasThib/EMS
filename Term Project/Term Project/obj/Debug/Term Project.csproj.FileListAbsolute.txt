@@ -11,3 +11,5 @@ C:\Users\Dallas\Documents\School\Software Quality\Term Project\Term Project\bin\
 C:\Users\Dallas\Documents\School\Software Quality\Term Project\Term Project\obj\Debug\Term Project.csprojResolveAssemblyReference.cache
 C:\Users\Dallas\Documents\School\Software Quality\Term Project\Term Project\obj\Debug\Term Project.exe
 C:\Users\Dallas\Documents\School\Software Quality\Term Project\Term Project\obj\Debug\Term Project.pdb
+C:\Users\Dallas\Documents\School\Software Quality\EMS\Term Project\Term Project\obj\Debug\Term Project.exe
+C:\Users\Dallas\Documents\School\Software Quality\EMS\Term Project\Term Project\obj\Debug\Term Project.pdb
